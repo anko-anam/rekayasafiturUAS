@@ -158,4 +158,4 @@ if menu == "Google Play Store":
             "text/csv"
         )
 
-st.sidebar.info("📌 Cocok untuk skripsi, riset, dan analisis opini publik")
+
