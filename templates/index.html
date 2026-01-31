@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Analisis Sentimen</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>📊 Analisis Sentimen</h1>
+    <p class="subtitle">Pilih sumber data untuk dianalisis</p>
+
+    <form method="POST" action="/run">
+        <select name="source" required>
+            <option value="">-- Pilih Sumber --</option>
+            <option value="youtube">YouTube (Komentar)</option>
+            <option value="playstore">Play Store (Review)</option>
+        </select>
+        <button type="submit">🔍 Mulai Analisis</button>
+    </form>
+
+    {% if chart %}
+    <h2>{{ title }}</h2>
+    <img src="{{ url_for('static', filename='chart.png') }}" class="chart">
+
+    <div class="summary">
+        {% for key, value in summary.items() %}
+            <div class="card {{ key|lower }}">
+                <h3>{{ key }}</h3>
+                <p>{{ value }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <table>
+        <tr>
+            <th>No</th>
+            <th>Teks</th>
+            <th>Sentimen</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ row.text }}</td>
+            <td class="{{ row.sentiment|lower }}">{{ row.sentiment }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+
+</body>
+</html>
