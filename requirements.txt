@@ -1,0 +1,7 @@
+streamlit
+requests
+google-play-scraper
+pandas
+nltk
+textblob
+matplotlib
